@@ -18,6 +18,7 @@ class UpYunStorage(Storage):
         self.service = settings.UPYUN_STORAGE.get('SERVICE')
         self.username = settings.UPYUN_STORAGE.get('USERNAME')
         self.password = settings.UPYUN_STORAGE.get('PASSWORD')
+        self.domain = settings.UPYUN_STORAGE.get('DOMAIN',None)
         # 初始化又拍云存储桶
         self.bucket = upyun.UpYun(self.service, self.username, self.password)
         
@@ -49,7 +50,10 @@ class UpYunStorage(Storage):
             
     def url(self, name):
         # 获取文件的URL
-        return self.bucket.sign_url('GET', self._get_key(name))
+        if self.domain:
+            return f'{self.domain}/{self._get_key(name)}'
+        else:
+            return f'http://{self.service}.test.upcdn.net/{self._get_key(name)}'
         
     def size(self, name):
         # 获取文件大小

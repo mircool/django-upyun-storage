@@ -1,4 +1,4 @@
-# Django 5 又拍云存储
+# Django 又拍云存储
 
 用于又拍云的 Django 存储后端。
 
@@ -27,6 +27,7 @@ UPYUN_STORAGE = {
     'SERVICE': '您的服务名称',
     'USERNAME': '您的授权账户',
     'PASSWORD': '您的授权密码',
+    'DOMAIN': '您的域名', # 可选，如果为空，则使用又拍云的默认域名 http://yourdomain.com
 }
 
 # 设置为默认存储器
