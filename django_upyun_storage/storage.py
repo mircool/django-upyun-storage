@@ -29,7 +29,8 @@ class UpYunStorage(Storage):
         # 保存文件
         key = self._get_key(name)
         if hasattr(content, 'chunks'):
-            self.bucket.put(key, content.chunks())
+            # 将内容转换为字节流
+            self.bucket.put(key, b''.join(content.chunks()))
         else:
             self.bucket.put(key, content.read())
         return name
