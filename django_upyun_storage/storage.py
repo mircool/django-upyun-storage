@@ -70,15 +70,24 @@ class UpYunStorage(Storage):
         return name
         
     def get_available_name(self, name, max_length=None):
-        # 获取可用的文件名，如果文件已存在则添加数字后缀
+        """
+        获取可用的文件名，如果文件已存在则添加数字后缀
+        确保使用正确的路径分隔符
+        """
         if self.exists(name):
             dir_name, file_name = os.path.split(name)
             file_root, file_ext = os.path.splitext(file_name)
             count = 1
             
+            # 确保目录名使用正确的路径分隔符
+            dir_name = dir_name.replace('\\', '/')
+            
             while self.exists(name):
-                # 文件名.扩展名 -> 文件名_1.扩展名
-                name = os.path.join(dir_name, f"{file_root}_{count}{file_ext}")
+                # 使用 / 作为路径分隔符
+                if dir_name:
+                    name = f"{dir_name}/{file_root}_{count}{file_ext}"
+                else:
+                    name = f"{file_root}_{count}{file_ext}"
                 count += 1
                 
         return name
@@ -106,5 +115,20 @@ class UpYunStorage(Storage):
         return list(directories), files
 
     def _get_key(self, name):
-        # 获取文件在又拍云存储中的完整路径
-        return name.lstrip('/')
+        """
+        获取文件在又拍云存储中的完整路径
+        将 Windows 路径分隔符替换为 URL 路径分隔符
+        """
+        # 将 Windows 路径分隔符替换为 URL 路径分隔符
+        name = name.replace('\\', '/')
+        
+        # 获取配置中的上传目录前缀，如果没有则使用空字符串
+        upload_prefix = settings.UPYUN_STORAGE.get('UPLOAD_PREFIX', '').strip('/')
+        
+        # 组合路径
+        if upload_prefix:
+            name = f"{upload_prefix}/{name.lstrip('/')}"
+        else:
+            name = name.lstrip('/')
+        
+        return name

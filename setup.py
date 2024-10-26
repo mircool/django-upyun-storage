@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="django-upyun-storage",  # 项目名称
-    version="1.0.2",  # 版本号
+    version="1.0.3",  # 版本号
     author="Mircool",  # 作者名称
     description="Django storage backend for Upyun",  # 简短描述
     long_description=long_description,  # 长描述，通常来自README文件
