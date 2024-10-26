@@ -12,7 +12,7 @@ setup(
     description="Django storage backend for Upyun",  # 简短描述
     long_description=long_description,  # 长描述，通常来自README文件
     long_description_content_type="text/markdown",  # 长描述的格式，这里是Markdown
-    url="https://github.com/mircool/django-upyun-storage",  # 项目网址
+    url="https://github.com/mircool/django-upyun-storage.git",  # 项目网址
     project_urls={  # 项目相关URL
         "Bug Tracker": "https://github.com/mircool/django-upyun-storage/issues",
     },
