@@ -1,11 +1,11 @@
-# Django 又拍云存储
+# Django5 又拍云存储
 
-用于又拍云的 Django 存储后端。
+用于又拍云的 Django5 存储后端。
 
 ## 安装
 
 ```bash
-pip install django-upyun-storage
+pip install django5-upyun-storage
 ```
 
 ## 配置
@@ -14,7 +14,7 @@ pip install django-upyun-storage
 ```python
 INSTALLED_APPS = [
     ...
-    'django_upyun_storage',
+    'django5_upyun_storage',
     ...
 ]
 ```
@@ -24,16 +24,16 @@ INSTALLED_APPS = [
 
 ```python
 UPYUN_STORAGE = {
-    'SERVICE': '您的服务名称',
-    'USERNAME': '您的授权账户',
-    'PASSWORD': '您的授权密码',
-    'DOMAIN': '您的域名', # 可选，如果为空，则使用又拍云的默认域名 http://yourdomain.com
+    'SERVICE': '服务名称',
+    'USERNAME': '授权账户',
+    'PASSWORD': '授权密码',
+    'DOMAIN': '绑定域名', # 可选，如果为空，则使用又拍云的默认域名 http://yourdomain.com
 }
 
 # 设置为默认存储器
 STORAGES = {
     'default': {
-        'BACKEND': 'django_upyun_storage.storage.UpYunStorage',
+        'BACKEND': 'django5_upyun_storage.storage.UpYunStorage',
     },
     'staticfiles': {
         'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',

@@ -6,10 +6,10 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="django-upyun-storage",  # 项目名称
-    version="1.0.3",  # 版本号
+    name="django5-upyun-storage",  # 项目名称
+    version="1.0.4",  # 版本号
     author="Mircool",  # 作者名称
-    description="Django storage backend for Upyun",  # 简短描述
+    description="又拍云 Django5 存储后端",  # 简短描述
     long_description=long_description,  # 长描述，通常来自README文件
     long_description_content_type="text/markdown",  # 长描述的格式，这里是Markdown
     url="https://github.com/mircool/django-upyun-storage.git",  # 项目网址
